@@ -32,39 +32,50 @@ for hısse in symbol:
    rakipler=f"https://finnhub.io/api/v1/stock/peers?symbol={hısse}&token={api_key}"
    rakip=requests.get(rakipler).json()
 
-
-
-
+   cand=f"https://finnhub.io/api/v1/stock/candle?symbol={hısse}&resolution=D&count=30&token={api_key}"
+   can=requests.get(cand).json()
+   if can.get("s") == "ok":
+      
+      dff=pd.DataFrame({
+         "kapanış":can["c"],
+         "tarih":pd.to_datetime(can["t"], unit="s")
+            })
+      dff["getiri"]=dff.pct_change()
+      ortalama_getiri=dff["getiri"].mean()
+      standrart_sapma=dff["getiri"].std()
+      risk=0.00
+      sharp=(ortalama_getiri - risk)/ standrart_sapma
+    
+   else:
+      sharp=None
    
    al=requests.get(url)
    data=al.json()
+   data["yüzde_değişim"]=((data["c"] - data["o"] )/ data["o"] )*100
+  
    bra.append({
-      "Hisse": {hısse},
-      "kapanış": data["c"],
+      "Hisse":hısse,
+      "kapanış":data["c"],
       "hight": data["h"],
       "low": data["l"],
       "açılış":data["o"],
+      "değişim":data["yüzde_değişim"],
+      "sharp":sharp, 
       "tarih": pd.to_datetime(data["t"], unit="s"),
       "Ülke":url_zmn.get("country"),
       "para_birimi":url_zmn.get("currency"),
       "Borsa":url_zmn.get("exchange"),
       "İndustry":url_zmn.get("finnhubIndustry"),
       "İpo_tarih":url_zmn.get("ipo"),
-      "Market değeri": url_zmn.get("marketCapitalization")   ,
-      "piyasa defteri":url_zmn.get("shareOutstanding") ,
-      "haberler":newss ,
-      "kazanç_raporu": ear,
+      "Market_değeri": url_zmn.get("marketCapitalization"),
+      "piyasa_defteri":url_zmn.get("shareOutstanding"),
+      "haberler":newss,
+      "kazanç_raporu":ear,
       "rakipler": rakip,
-    
-      
-
     })
-  
-
 brahs=pd.DataFrame(bra)
 
 brahs.to_excel("C:\\Users\\buğra\\Desktop\\abd_borsaa_mydata.xlsx")
-
 
 
 
