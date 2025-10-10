@@ -21,7 +21,7 @@ import seaborn as sns
    # Grafikler ve tablolar
 <img width="1712" height="884" alt="Ekran görüntüsü 2025-10-11 012107" src="https://github.com/user-attachments/assets/eb2786e3-be71-4f68-afce-1775c61cef3b" />
 <img width="1757" height="891" alt="Ekran görüntüsü 2025-10-11 012053" src="https://github.com/user-attachments/assets/ba81add9-7515-4aa8-8ce3-4a9534599c30" />
-<img width="1627" height="874" alt="Ekran görüntüsü 2025-10-11 012010" src="https://github.com/user-attachments/assets/742112a1-b64e-41df-8afc-385f24d948f2" />
+<img width="1734" height="915" alt="Ekran görüntüsü 2025-10-11 023118" src="https://github.com/user-attachments/assets/b8a30571-cd92-4fca-998f-fde254e04a9e" />
 <img width="1630" height="934" alt="Ekran görüntüsü 2025-10-11 011954" src="https://github.com/user-attachments/assets/994dfb56-1a8c-46fa-8935-dc820be2044a" />
 <img width="1690" height="939" alt="Ekran görüntüsü 2025-10-11 011941" src="https://github.com/user-attachments/assets/af329321-fb12-43b3-aa55-a6859d44ed7b" />
 <img width="1617" height="940" alt="Ekran görüntüsü 2025-10-11 011925" src="https://github.com/user-attachments/assets/061a68c8-6aa3-4160-bc7c-70c4ee8df882" />
