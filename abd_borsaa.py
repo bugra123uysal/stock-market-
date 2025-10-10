@@ -5,7 +5,7 @@ import matplotlib.pylab as plt
 import seaborn as sns
 bra=[]
 api_key="cp7rd3pr01qi8q89arpgcp7rd3pr01qi8q89arq0"
-symbol=["AAPL","AMZN","TSM","AMD" ] 
+symbol=["NVDA", "MSFT", "AAPL", "GOOGL", "AMZN", "META", "TSLA" ] 
 
    
    
@@ -39,15 +39,19 @@ for hısse in symbol:
    al=requests.get(url)
    data=al.json()
    data["yüzde_değişim"]=((data["c"] - data["o"] )/ data["o"] )*100
-
+ 
    #Tahmini hisse fiyatı
+   
    mm=url_zmn.get("marketCapitalization") / url_zmn.get("shareOutstanding")
-   # açılış kapanış fiyatı arasındaki far
+   # açılış kapanış fiyatı arasındaki fark
    akff=data["c"] - data["o"]
 
    # low hight fiyat farkı
    lhff=data["h"] -data["l"]
-  
+
+   # volatilite 
+   volatilite=((data["h"] -data["l"]) / data["l"]) * 100
+   pd.options.display.float_format='{:,.2f}'.format
    bra.append({
       "Hisse":hısse,
       "kapanış":data["c"],# kapanış fiyatı
@@ -55,9 +59,10 @@ for hısse in symbol:
       "low": data["l"],
       "açılış":data["o"],# açılış fiyatı
       "değişim":data["yüzde_değişim"],
+      "Volatilite": volatilite,
       "açılış_kapanış_fiyat_farkı":akff,
       "fiyat_aralığı_yüksek_düşük":lhff,
-      "Fiyat_tahmini":mm ,
+      "Fiyat_tahmini":mm ,  
       "tarih": pd.to_datetime(data["t"], unit="s"),
       "Ülke":url_zmn.get("country"),
       "para_birimi":url_zmn.get("currency"),
@@ -70,6 +75,7 @@ for hısse in symbol:
       "kazanç_raporu":ear,
       "rakipler": rakip,
     })
+
    
 """   
 print(data.columns)  
